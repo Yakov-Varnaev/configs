@@ -7,7 +7,6 @@ local autocmd = vim.api.nvim_create_autocmd
 -- })
 --
 
-
 -- autocmd("openTree", {
 --  pattern = "*",
 --  command = "NvimTreeOpen",
@@ -16,6 +15,9 @@ local autocmd = vim.api.nvim_create_autocmd
 vim.opt.swapfile = false
 vim.opt.scrolloff = 7
 vim.cmd [[ set nowrap ]]
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.nofoldenable = true
 -- vim.opt.nowrap = true
 
 -- vim.highlight.create('DapBreakpoint', { ctermbg=0, guifg='#993939', guibg='#31353f' }, false)
@@ -26,37 +28,49 @@ vim.cmd [[ set nowrap ]]
 -- vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
 -- vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
 
-vim.fn.sign_define('DapBreakpoint', { text='🔴', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointCondition', { text='ﳁ', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl= 'DapBreakpoint' })
-vim.fn.sign_define('DapLogPoint', { text='🔵', texthl='DapLogPoint', linehl='DapLogPoint', numhl= 'DapLogPoint' })
-vim.fn.sign_define('DapStopped', { text='➡️', texthl='DapStopped', linehl='DapStopped', numhl= 'DapStopped' })
+vim.fn.sign_define(
+  "DapBreakpoint",
+  { text = "🔴", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+)
+vim.fn.sign_define(
+  "DapBreakpointCondition",
+  { text = "ﳁ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+)
+vim.fn.sign_define(
+  "DapBreakpointRejected",
+  { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+)
+vim.fn.sign_define(
+  "DapLogPoint",
+  { text = "🔵", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
+)
+vim.fn.sign_define(
+  "DapStopped",
+  { text = "➡️", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+)
 
 -- autocmd BufEnter * silent! lcd %:p:h
 -- the same as autochdir but better for nvim-tree and other plugins.
 autocmd("BufEnter", {
-    pattern = "*",
-    command = "silent! lcd %:p:h"
+  pattern = "*",
+  command = "silent! lcd %:p:h",
 })
-
 
 -- open nvim-tree on startup
 local function open_nvim_tree()
-
   -- open the tree
- require("nvim-tree.api").tree.open()
+  require("nvim-tree.api").tree.open()
 end
 
 autocmd("VimEnter", {
-  callback = function ()
+  callback = function()
     open_nvim_tree()
-  end;
+  end,
 })
 
 -- load dap-python
 
 autocmd("FileType", {
   pattern = "python",
-  command = "lua require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')"
+  command = "lua require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')",
 })
-

@@ -157,6 +157,10 @@ local plugins = {
     "folke/zen-mode.nvim",
     event = "VimEnter"
   },
+  {
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+  },
 
   -- Terminals
   -- disable nvterm

@@ -40,7 +40,7 @@ M.mason = {
     "jsonls",
     "prettier",
 
-    -- golang 
+    -- golang
     "gopls",
 
     -- python
@@ -62,42 +62,41 @@ M.nvimtree = {
     enable = true,
   },
 
+  -- sync_root_with_cwd = false,
+
   renderer = {
     highlight_git = true,
     icons = {
       show = {
-        git = true,
+        git = false,
       },
     },
   },
 }
 
 M.copilot = {
-   suggestion = {
-      auto_trigger = true,
-      keymap = {
-        accept = "<M-/>",
-        prev = "<M-j>",
-        next = "<M-k>",
-        dismiss = "<C-]>",
-      },
+  suggestion = {
+    auto_trigger = true,
+    keymap = {
+      accept = "<M-/>",
+      prev = "<M-j>",
+      next = "<M-k>",
+      dismiss = "<C-]>",
     },
-    filetypes = {
-      yaml = false,
-      markdown = false,
-      help = false,
-      gitcommit = false,
-      gitrebase = false,
-      hgcommit = false,
-      svn = false,
-      cvs = false,
-      ["."] = false,
-    },
-    copilot_node_command = "node", -- Node.js version must be > 16.x
-    server_opts_overrides = {},
-}
-
-M.telescope = {
+  },
+  filetypes = {
+    yaml = false,
+    markdown = false,
+    help = false,
+    gitcommit = false,
+    gitrebase = false,
+    hgcommit = false,
+    svn = false,
+    cvs = false,
+    ["."] = false,
+  },
+  copilot_node_command = "node", -- Node.js version must be > 16.x
+  server_opts_overrides = {},
 }
 
 -- local dap, dapui = require("dap"), require("dapui")
